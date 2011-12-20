@@ -1,0 +1,231 @@
+<html>
+	<head>
+		<title>
+			Das Girlsday@HM HTML&CSS Kochbuch
+		</title>
+	</head>
+
+	<style>
+
+		#page-wrap
+		{
+			width:50%;
+		}
+
+		body
+		{
+			background-color:#e3c9f3;
+			margin:0px;
+			font-family:Trebuchet MS;		
+		}
+
+		h2
+		{
+			background-color:#4c305e;
+			color:white;
+			padding:6px 6px 6px 12px;
+			margin:0px;
+		}
+		
+		h3
+		{
+			background-color:#9b5fc1;
+			color:#eee;
+			padding:6px 6px 6px 12px;
+			margin:0px;
+		}
+	
+		p
+		{
+			margin-left:12px;
+		}
+
+		.slide
+		{
+			display:none;
+		}
+	</style>
+
+	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			var tableOfContents = $(".toc").first();		
+	
+			tableOfContents
+				.siblings("h1")
+				.each(function(i,h1){
+					tableOfContents.append($("<li>"+$(h1).text()+"</li>"));
+					var chapters = $(h1).nextUntil("h1").filter("h2");
+					var chapterList = $("<ol></ol>");
+					
+					chapters.each(function(i, h2){
+						chapterList.append("<li>"+$(h2).text()+"</li>");					
+					});
+
+					tableOfContents.append(chapterList);
+				});	
+		});
+	</script>
+
+	<body>
+	<div id="page-wrap">
+		<h1>Inhalt</h1>
+		<ul class="toc">
+		</ul>
+
+		<h1>HTML</h1>
+		<h2>Das Internet</h2>
+		<h3>Was ist eigentlich das Internet?</h3>
+		<p>
+			Wenn man heute allgemein &uuml;ber das Internet spricht, 
+			dann meinen die meisten Menschen damit eigentlich das World Wide Web, abgek&uuml;rzt WWW. 
+			Tats&auml;chlich aber muss man diese Begriffe voneinander trennen:
+		</p>
+		<p>
+			Das Internet ist genau gesehen eine Vernetzung von wirklich sehr  vielen Computern, 
+			bestehend aus  Computern und Kabeln usw. 
+			und Regeln, wie die einzelnen Computer miteinander reden, die Protokolle genannt werden.
+		</p>
+		<p>
+			Das WWW hingegen baut auf dem Internet auf und beschreibt ein Konzept, 
+			das beschreibt wie man Inhalte miteinander teilt. Dazu folgt sp&auml;ter noch mehr.
+		</p>
+		<ul class="slide">
+			<li>Das Internet ist ein Weltweites Computernetzwerk</li>
+			<li>Das World Wide Web (WWW) ist die bekannteste Art der Nutzung des Internets</li>
+		</ul>
+			<h3>Wie alles entstanden ist</h3>
+			<p>
+				Alles begann 1969 mit der Vernetzung von 4 Forschungsinstituten und Universit&auml;ten in den USA.<br>
+				Diesem Netzwerk, das ARPANET genannt wurde, schlossen sich im Laufe der Jahre immer mehr Einrichtungen, so dass im Jahr 1983 bereits 
+				68 Knotenpunkte miteinander verbunden waren.<br><br>
+				1989 war das ARPANET durch die Vielzahl der Nutzer an seine Grenzen geraten und ein neues Netz, das heutige Internet wurde geschaffen. 
+				Dieses Netz beh&auml;lt die Grundtechnologien des APRANETs bei, entwickelt sie aber auch weiter, damit mehr und mehr neue Knoten 
+				angeschlossen werden k&ouml;nnen.
+			</p>
+		<ul class="slide">
+			<li>Am Anfang waren lediglich Universit&auml;ten und Forschungseinrichtungen in USA angeschloßen (ARPANET)</li>
+			<li>Immer mehr Einrichtungen auch außerhalb der USA kamen hinzu</li>
+			<li>1990 wird das ARPANET durch das heutige Internet ersetzt</li>
+		</ul>
+		<div class="slide">
+			<h3>Die Vernetzung von Computern</h3>
+			<p>
+				Man kann sich jeden Computer als einen Knoten vorstellen. Von jedem Knoten gehen ein oder mehrere F&auml;den zu anderen Knoten. 
+				Heute gibt es so viele Knoten im Internet, dass man sie eigentlich gar nich mehr darstellen kann. Wenn man einen Versuch startet, w&uuml;rde es in etwa
+				so aussehen: <a href="http://upload.wikimedia.org/wikipedia/commons/d/d2/Internet_map_1024.jpg">Klick mich!</a><br><br>
+				Die Art und Weise der Vernetzung von Computern wirkt auf den ersten Blick etwas chaotisch, denn es gibt zwar große und kleine Knoten, aber kein wirkliches Zentrum.
+				Aber das ist so gewollt, denn es hat den Vorteil, das falls einer der Knoten ausf&auml;llt, einfach ein anderer seine Aufgaben &uuml;bernehmen kann.<br><br>
+				
+				Wie viele Knoten es gibt ist aber eigentlich gar nicht so wichtig. Das entscheidende ist, dass es von jedem einzelnen irgendeinen Weg zu jedem anderen Knoten gibt.
+			</p>
+		</div>
+		<ul>
+			<li>Computernetze sind dezentral aufgebaut</li>
+			<li>F&auml;llt einer aus, kann ein anderer Einspringen</li>
+			<li>Jeder Knoten kann von &uuml;berall erreicht werden</li>
+		</ul>
+		<div class="slide">
+			<h3>Das World Wide Web (WWW)</h3>
+			<p>
+				1991 wurde das WWW in seiner heutigen Form von Tim Berners Lee ver&ouml;ffentlicht. Es besteht in dieser Form bis heute 
+				und jeder der das Internet nutzt kennt dieses Konzept, obwohl die meisten von uns es gar nicht wissen. Ein Beispiel:<br> <br>
+				<a href="http://de.wikipedia.org/wiki/Tim_Berners-Lee">
+					Ich bin ein Link und der Ort auf den ich zeige wird URL genannt. Du kannst ihn sehen, wenn du mich anklickst!
+				<a><br><br>
+				Durch die Entwicklung dieser Struktur und wegen der ersten grafikf&auml;higen Browser wurde das Internet auch f&uuml;r Laien nutzbar, 
+				denn jetzt konnte man echte Texte und Bilder einfach darstellen. Diese Darstellung &uuml;bernimmt der Browser.
+			</p>
+		</div>			
+			<ul>
+				<li>Das WWW wurde 1991 von Tim Berners Lee vorgestellt</li>
+				<li>Die Struktur des WWW ist bis heute die Grundlage aller Internetseiten</li>
+				<li>Durch das WWW und durch die Browser wurde das Internet f&uuml;r jeden nutzbar</li>
+			</ul>
+			<h3>Webserver und Browser</h3>
+			<p>
+			Ein Browser ist ein Programm, das die Informationen aus dem Internet f&uuml;r Menschen besser lesbar gestaltet. Du benutzt gerade einen Browser,
+			um diese Seite zu lesen. Vielleicht hast du auch schon einmal von Firefox, Internet Explorer, Chrome oder Safari geh&ouml;rt? <br><br>
+			Der Browser erh&auml;lt die Informationen in dem er eine Anfrage an einen Webserver stellt. Der Webserver antwortet, in dem er den HTML Code zur&uuml;ckschickt.<br><br>
+			
+			Man kann diesen Vorgang mit einem Einkauf beim B&auml;cker vergleichen. Der Kunde betritt den Laden und zeigt auf ein St&uuml;ck Brot. Er stellt dadurch eine Anfrage.
+			Der B&auml;cker greift in die Auslage, holt das Brot und reicht es dem Kunden. Dadurch erh&auml;lt der Kunde was er will.
+			Das Zeigen auf das Brot ist die Anfrage. Im Internet ist das eine Eingabe in den Browser.
+			<img src="BrowserEingabe.png" style="margin: 15px"> <br>
+			Danach erfolgt die &uuml;bergabe des Brotes. Im Internet w&auml;re das die &uuml;bermittlung des HTML-Codes &uuml;ber das Netzwerk und die Darstellung im Browser.
+			</p>
+		<div class="slide">
+			<ul>
+				<li>Browser "&uuml;bersetzten" HTML und machen es einfach lesbar</li>
+				<li>URLs sind eindeutige Zeiger auf Inhalte im Internet</li>
+				<li>Anfragen an URLs werden von dem jeweiligen Webserver beantwortet</li>
+			</ul>
+		</div>
+		<h3>Uniform Resource Locator (URL)</h3>
+		<p>
+			Hinter jedem Link und hinter jeder  Eingabe in der Befehlszeile des Browser steckt eine URL.
+			Eine URL ist ein Zeiger, der auf genau einen Inhalt gerichtet ist. 
+			Durch die URL kann man so eindeutig bestimmen, welchen Inhalt man gerne erreichen m&ouml;chte 
+			und es kann zu keinen Verwechslungen kommen.<br><br>
+			Eine URL sieht meistens so aus:
+			<a href="http://www.afr.musin.de/">http://www.afr.musin.de/</a> <br><br>
+			Der erste Teil ("http://") sagt welches Protokoll verwendet wird (HTTP).
+			Der zweite ("www.") besagt lediglich, dass es sich um eine Anfrage an das World Wide Web handelt.
+			Da diese Teile meistens gleich kann man sie bei einer EIngabe im Browser auch weglassen. 
+			Sie werden dann automatisch erg&auml;nzt.<br><br>
+			Danach kommen der Name (afr.musin) und die Domain (.de/). Der Name ("afr.musin") ist 
+			zusammen mit einer Domain (".de") der eindeutige Teil, der zur Bestimmung der Ressource dient.
+			Diese URLs werden durch bestimmte Regeln so aufgel&ouml;st, dass bekannt ist welcher Server wo auf 
+			der Welt genau diesen Inhalt, den man gerade m&ouml;chte bereitstellt.
+		</p>
+		<ul class="slide">
+			<li>Eine URL ist ein eindeutiger Zeiger auf eine Ressource</li>
+			<li>Hinter jedem Link und jeder Eingabe im Browser steckt eine URL</li>
+			<li>Anfragen an URLs werden von dem jeweiligen Webserver beantwortet</li>
+		</ul>
+		<div class="summary">
+		<h3>Zusammenfassung</h3>
+			<ul>
+				<li> Das Internet ist ein ziemlich großer Haufen von kleineren und gr&ouml;ßeren Computern, der mittlerweile &uuml;ber die ganze Welt verteilt ist.</li>
+				<li> Das WWW ist die popul&auml;rste Art und Weise, wie wir das Internet nutzen k&ouml;nnen.</li>
+				<li> Die Inhalte des WWW werden auf Webservern bereitgestellt.</li>
+				<li> Der Browser stellt die Inhalte des Intenets in einer gut lesbaren Form dar.</li>
+		</div>
+
+		<h2>Das WWW</h3>
+		<h3>Browser – HMTL-> HTML-Seite</h3>
+		<h3>Rollenspiel</h3>
+		<h3>Box-Prinzip</h3>
+		<h3>Tags</h3>
+		<h2>Lernzirkel - HTML-F&uuml;hrerschein</h3>
+		<h3>Listen</h3>
+		<textarea>
+<ul>
+	<li>
+	</li>
+</ul>
+		</textarea>
+		<h3>Bilder</h3>
+		<h3>Hyperlinks</h3>
+		<h3>Tabellen</h3>
+		<h2>Vorstellung Projekt - Freiarbeit</h2>
+		<h3>Profilseite</h3>
+
+		<h1>CSS</h1>
+		<h2>Einf&uuml;hrung</h2>
+		<h3>Einbindung</h3>
+		<h3>Was bedeutet Design?</h3>
+		<h2>Integration HTML und CSS</h2>
+		<h3>HTML Elemente versch&ouml;nern</h3>
+		<h3>Was bedeutet Layout?</h3>
+		<h3>Wichtige CSS Stile</h3>
+		<h3>Projektarbeit: Homepage aufpeppen</h3>
+		<h2>Layout mit CSS</h2>
+		<h3>Box Modell</h3>
+		<h3>Bereiche erstellen (Div)</h3>
+		<h3>Unterscheidung von Elementen</h3>
+		<h3>float</h3>
+	</div>
+	</body>
+</html>
