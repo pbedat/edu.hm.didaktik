@@ -44,9 +44,21 @@
 		{
 			display:none;
 		}
+
+		textarea
+		{
+			background-color:none;
+			border:none;
+			color:black;
+			width:100%;
+		}
 	</style>
 
+	<link type="text/css" href="./lib/jqueryui/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+
 	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="./lib/jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script src="./jquery.autogrow-textarea.js"></script>
 
 	<script>
 		$(document).ready(function(){
@@ -65,10 +77,35 @@
 
 					tableOfContents.append(chapterList);
 				});	
+
+			var htmlExampleWrapper = $(	"<div class='html-example-tabs'>"+
+											"<ul>"+
+												"<li><a href='#tabs-1'>HTML</a></li>"+
+												"<li><a href='#tabs-2'>Vorschau</a></li>"+
+											"</ul>"+
+											"<div id='tabs-1' class='html-example-tab'></div>"+
+											"<div id='tabs-2' class='html-example-tab'></div>"+
+										"</div>");
+
+			var areas = $("textarea").autoGrow().width("100%").attr("disabled", "disabled");
+
+			areas.each(function(i, item){		
+				var text = $(item).text();
+				$(this).wrap("<div class='html-example-tabs' />");	
+				var wrapped = $(this).parent().html(htmlExampleWrapper.html());	
+				wrapped.find(".html-example-tab").first().append($(item));
+				wrapped.find(".html-example-tab").last().html($(item).text());
+			});
+
+			$(".html-example-tabs").tabs();
 		});
 	</script>
 
 	<body>
+	<textarea>
+foo<b>
+bar</b>
+</textarea>
 	<div id="page-wrap">
 		<h1>Inhalt</h1>
 		<ul class="toc">
@@ -203,6 +240,10 @@
 		<textarea>
 <ul>
 	<li>
+		test1
+	</li>
+	<li>
+		test2
 	</li>
 </ul>
 		</textarea>
