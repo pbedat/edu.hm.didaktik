@@ -56,48 +56,20 @@
 
 	<link type="text/css" href="./lib/jqueryui/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
 
-	<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+	<script src="./lib/jqueryui/js/jquery-1.6.2.min.js"></script>
 	<script src="./lib/jqueryui/js/jquery-ui-1.8.16.custom.min.js"></script>
 	<script src="./jquery.autogrow-textarea.js"></script>
+	<script src="./lib/namespace.js"></script>	
+	<script src="./manual.js"></script>
 
 	<script>
 		$(document).ready(function(){
-			var tableOfContents = $(".toc").first();		
-	
-			tableOfContents
-				.siblings("h1")
-				.each(function(i,h1){
-					tableOfContents.append($("<li>"+$(h1).text()+"</li>"));
-					var chapters = $(h1).nextUntil("h1").filter("h2");
-					var chapterList = $("<ol></ol>");
-					
-					chapters.each(function(i, h2){
-						chapterList.append("<li>"+$(h2).text()+"</li>");					
-					});
-
-					tableOfContents.append(chapterList);
-				});	
-
-			var htmlExampleWrapper = $(	"<div class='html-example-tabs'>"+
-											"<ul>"+
-												"<li><a href='#tabs-1'>HTML</a></li>"+
-												"<li><a href='#tabs-2'>Vorschau</a></li>"+
-											"</ul>"+
-											"<div id='tabs-1' class='html-example-tab'></div>"+
-											"<div id='tabs-2' class='html-example-tab'></div>"+
-										"</div>");
-
-			var areas = $("textarea").autoGrow().width("100%").attr("disabled", "disabled");
-
-			areas.each(function(i, item){		
-				var text = $(item).text();
-				$(this).wrap("<div class='html-example-tabs' />");	
-				var wrapped = $(this).parent().html(htmlExampleWrapper.html());	
-				wrapped.find(".html-example-tab").first().append($(item));
-				wrapped.find(".html-example-tab").last().html($(item).text());
+			
+			require("edu.hm.didaktik", function(ns) {
+				ns.makeToc(".toc");	
+				ns.makeHtmlPreviews();		
 			});
-
-			$(".html-example-tabs").tabs();
+			
 		});
 	</script>
 
@@ -146,7 +118,6 @@ bar</b>
 			<li>Immer mehr Einrichtungen auch außerhalb der USA kamen hinzu</li>
 			<li>1990 wird das ARPANET durch das heutige Internet ersetzt</li>
 		</ul>
-		<div class="slide">
 			<h3>Die Vernetzung von Computern</h3>
 			<p>
 				Man kann sich jeden Computer als einen Knoten vorstellen. Von jedem Knoten gehen ein oder mehrere F&auml;den zu anderen Knoten. 
@@ -157,41 +128,45 @@ bar</b>
 				
 				Wie viele Knoten es gibt ist aber eigentlich gar nicht so wichtig. Das entscheidende ist, dass es von jedem einzelnen irgendeinen Weg zu jedem anderen Knoten gibt.
 			</p>
-		</div>
-		<ul>
-			<li>Computernetze sind dezentral aufgebaut</li>
-			<li>F&auml;llt einer aus, kann ein anderer Einspringen</li>
-			<li>Jeder Knoten kann von &uuml;berall erreicht werden</li>
-		</ul>
+		
 		<div class="slide">
-			<h3>Das World Wide Web (WWW)</h3>
-			<p>
-				1991 wurde das WWW in seiner heutigen Form von Tim Berners Lee ver&ouml;ffentlicht. Es besteht in dieser Form bis heute 
-				und jeder der das Internet nutzt kennt dieses Konzept, obwohl die meisten von uns es gar nicht wissen. Ein Beispiel:<br> <br>
-				<a href="http://de.wikipedia.org/wiki/Tim_Berners-Lee">
-					Ich bin ein Link und der Ort auf den ich zeige wird URL genannt. Du kannst ihn sehen, wenn du mich anklickst!
-				<a><br><br>
-				Durch die Entwicklung dieser Struktur und wegen der ersten grafikf&auml;higen Browser wurde das Internet auch f&uuml;r Laien nutzbar, 
-				denn jetzt konnte man echte Texte und Bilder einfach darstellen. Diese Darstellung &uuml;bernimmt der Browser.
-			</p>
-		</div>			
+			<ul>
+				<li>Computernetze sind dezentral aufgebaut</li>
+				<li>F&auml;llt einer aus, kann ein anderer Einspringen</li>
+				<li>Jeder Knoten kann von &uuml;berall erreicht werden</li>
+			</ul>
+		</div>
+
+		<h3>Das World Wide Web (WWW)</h3>
+		<p>
+			1991 wurde das WWW in seiner heutigen Form von Tim Berners Lee ver&ouml;ffentlicht. Es besteht in dieser Form bis heute 
+			und jeder der das Internet nutzt kennt dieses Konzept, obwohl die meisten von uns es gar nicht wissen. Ein Beispiel:<br> <br>
+			<a href="http://de.wikipedia.org/wiki/Tim_Berners-Lee">
+				Ich bin ein Link und der Ort auf den ich zeige wird URL genannt. Du kannst ihn sehen, wenn du mich anklickst!
+			<a><br><br>
+			Durch die Entwicklung dieser Struktur und wegen der ersten grafikf&auml;higen Browser wurde das Internet auch f&uuml;r Laien nutzbar, 
+			denn jetzt konnte man echte Texte und Bilder einfach darstellen. Diese Darstellung &uuml;bernimmt der Browser.
+		</p>
+		
+		<div class="slide">			
 			<ul>
 				<li>Das WWW wurde 1991 von Tim Berners Lee vorgestellt</li>
 				<li>Die Struktur des WWW ist bis heute die Grundlage aller Internetseiten</li>
 				<li>Durch das WWW und durch die Browser wurde das Internet f&uuml;r jeden nutzbar</li>
 			</ul>
-			<h3>Webserver und Browser</h3>
-			<p>
-			Ein Browser ist ein Programm, das die Informationen aus dem Internet f&uuml;r Menschen besser lesbar gestaltet. Du benutzt gerade einen Browser,
-			um diese Seite zu lesen. Vielleicht hast du auch schon einmal von Firefox, Internet Explorer, Chrome oder Safari geh&ouml;rt? <br><br>
-			Der Browser erh&auml;lt die Informationen in dem er eine Anfrage an einen Webserver stellt. Der Webserver antwortet, in dem er den HTML Code zur&uuml;ckschickt.<br><br>
-			
-			Man kann diesen Vorgang mit einem Einkauf beim B&auml;cker vergleichen. Der Kunde betritt den Laden und zeigt auf ein St&uuml;ck Brot. Er stellt dadurch eine Anfrage.
-			Der B&auml;cker greift in die Auslage, holt das Brot und reicht es dem Kunden. Dadurch erh&auml;lt der Kunde was er will.
-			Das Zeigen auf das Brot ist die Anfrage. Im Internet ist das eine Eingabe in den Browser.
-			<img src="BrowserEingabe.png" style="margin: 15px"> <br>
-			Danach erfolgt die &uuml;bergabe des Brotes. Im Internet w&auml;re das die &uuml;bermittlung des HTML-Codes &uuml;ber das Netzwerk und die Darstellung im Browser.
-			</p>
+		</div>
+		<h3>Webserver und Browser</h3>
+		<p>
+		Ein Browser ist ein Programm, das die Informationen aus dem Internet f&uuml;r Menschen besser lesbar gestaltet. Du benutzt gerade einen Browser,
+		um diese Seite zu lesen. Vielleicht hast du auch schon einmal von Firefox, Internet Explorer, Chrome oder Safari geh&ouml;rt? <br><br>
+		Der Browser erh&auml;lt die Informationen in dem er eine Anfrage an einen Webserver stellt. Der Webserver antwortet, in dem er den HTML Code zur&uuml;ckschickt.<br><br>
+		
+		Man kann diesen Vorgang mit einem Einkauf beim B&auml;cker vergleichen. Der Kunde betritt den Laden und zeigt auf ein St&uuml;ck Brot. Er stellt dadurch eine Anfrage.
+		Der B&auml;cker greift in die Auslage, holt das Brot und reicht es dem Kunden. Dadurch erh&auml;lt der Kunde was er will.
+		Das Zeigen auf das Brot ist die Anfrage. Im Internet ist das eine Eingabe in den Browser.
+		<img src="BrowserEingabe.png" style="margin: 15px"> <br>
+		Danach erfolgt die &uuml;bergabe des Brotes. Im Internet w&auml;re das die &uuml;bermittlung des HTML-Codes &uuml;ber das Netzwerk und die Darstellung im Browser.
+		</p>
 		<div class="slide">
 			<ul>
 				<li>Browser "&uuml;bersetzten" HTML und machen es einfach lesbar</li>
@@ -255,17 +230,260 @@ bar</b>
 
 		<h1>CSS</h1>
 		<h2>Einf&uuml;hrung</h2>
-		<h3>Einbindung</h3>
-		<h3>Was bedeutet Design?</h3>
-		<h2>Integration HTML und CSS</h2>
-		<h3>HTML Elemente versch&ouml;nern</h3>
+		<p>
+			Eine Homepage mit reinem HTML und sonst nichts sieht doch relativ fad aus,
+			meint ihr nicht?
+		</p>
+		<p>
+			Das liegt daran, dass wir bisher ja nur beschrieben haben, was auf die Webseite 
+			soll und wie wir diese Informationen strukturieren. Das Aussehen haben wir bis 
+			jetzt au&szlig;en vor gelassen und das ist auch gut so.<br/>
+			Es ist n&auml;mlich viel leichter sich erst auf eine Sache zu konzentrieren.
+			Schlie&szlig;lich f&auml;ngt ein Maler doch auch nicht zuerst mit dem Ausmalen an, wenn er
+			ein Bild zeichnet!
+		</p>
+		<p>
+			Wenn wir das Aussehen, also das Design der Webseite betrachten, 
+			verlassen wir den Zust&auml;ndigkeitsbereich von HTML und richten unsere 
+			Aufmerksamkeit nun voll und ganz auf CSS (Cascading Style Sheets).<br/>
+			Die Bedeutung dieses Wortes ist erstmal nebensache. Wichtig ist nur: 
+			Es geht um "Style"! 
+		</p>
+		<ul class="slide">
+			<li>Seiten aus reinem HTML sind fad</li>
+			<li>Beschreibt nur Informationen und deren Struktur</li>
+			<li>CSS dient dazu HTML-Seiten zu verschönern</li>
+		</ul>
+		<h3>
+			CSS Einbinden
+		</h3>
+		<p>
+			CSS ist im Grunde genommen eine Sammlung von Informationen &uuml;ber das genaue
+			Aussehen unserer Webseite. Diese Informationen werden &uuml;blicherweise in einer
+			CSS-Datei abgelegt.
+		</p>
+		<p>
+			Erstellen wir zun&auml;chst eine sogenannte CSS-Datei, in der wir alle Informationen
+		 	ablegen, die unsere Homepage versch&ouml;nern sollen.
+		</p>
+		<img alt="bild oder video" />
+		<p>
+			Bis jetzt interessiert sich unser Browser herzlich wenig f&uuml;r diese CSS-Datei,
+			wenn wir die HTML-Seite aufrufen.
+			Wir m&uuml;ssen sie noch in die HTML Seite einbinden, dann weiß der Browser auch 
+			bescheid wo er suchen muss:
+		</p>
+		<p>
+			&lt;link rel="stylesheet" href="[DATEINAME].css"&gt;
+		</p>
+		<ul class="slide">
+			<li>Der HTML-Seite müssen CSS-Stile "untergeschoben" werden</li>
+			<li>Das funktioniert auf drei Arten:
+				<ul>
+					<li>Angabe einer CSS-Datei</li>
+					<li>Definition innerhalb von &lt;style&gt; Tags</li>
+					<li>Definition im Style-Attribut eins Elements</li>
+				</ul>
+			</li>
+			<li>Die erste Variante ist die sauberste und beste L&ouml;sung!</li>		
+		</ul>
+		<h2>
+			Html mit CSS verschönern
+		</h2>
+		<p>
+			Möchten wir bestimmte Elemente auf unserer Seite ein wenig aufpeppen geht 
+			das so:
+		</p>
+		
+		<p>Damit sind alle Level 1 Überschriften rot und unterstrichen:</p>
+		<textarea class="html-example">
+<style>
+	h1 
+	{
+		color:red;
+		text-decoration:underlined;
+	}
+</style>
+
+<h1>
+	Hallo Welt!
+</h1>
+		</textarea>
+
+		<p>
+			Allgemein könnte man also sagen:
+		</p>
+		<textarea class="ignore-preview">
+[Html-Tag]
+{
+	[CSS-Regel]:[Wert];
+	[CSS-Regel]:[Wert];
+	usw.
+}
+		</textarea>
+	
+		<p>
+			Aber Vorsicht!</br>
+			Nicht jede CSS-Regel passt auch auf jedes Element!</br>
+			Macht das Sinn?
+		</p>
+
+		<textarea class="ignore-preview">
+table {
+	text-decoration:underlined;
+}
+		</textarea>
+		<p>
+			Nein das passt nicht, denn eine Tabelle kann man schlecht rot unterstreichen,
+			das funktioniert nur mit Schrift! Wann was wo passt, 
+			werdet ihr dann schon selbst bemerken.
+		</p>
+		<h2>
+			Wie unterscheidet man Tags in HTML?
+		</h2>
+		<p>
+			Wir haben im letzten Kapitel gelernt, dass man HTML-
+			Seiten, die zun&auml;chst erstmal ziemlich langweilig aussehen,
+			mit CSS versch&ouml;nern und aufpeppen kann.
+		</p>
+		<p>
+			Aber was, wenn ich ein HTML-Element auf viele verschiedene Arten
+			versch&ouml;nern m&ouml;chte?
+		</p>
+		<p>
+			Sehen wir uns mal das folgende Beispiel an:
+		</p>
+		<textarea>
+<p style="font-size:10px">
+	Kleiner Absatz
+</p>
+<p style="font-size:14px">
+	Gr&ouml;sserer Absatz
+</p>
+<p style="font-size:26px">
+	Riesen Absatz
+</p>
+		</textarea>
+
+		<p>
+			Zum Gl&uuml;ck gibt es die M&ouml;glichkeit Tags Namen zu geben:
+		</p>
+
+		<textarea>
+<style>
+	#klein	{font-size:10px;}
+	#mittel	{font-size:14px;}
+	#riesig	{font-size:26px;}
+</style>
+
+<p id="klein">
+	Kleiner Absatz
+</p>
+<p id="mittel">
+	Gr&ouml;sserer Absatz
+</p>
+<p id="riesig">
+	Riesen Absatz
+</p>
+		</textarea>		
+
+		<p>
+			Doch wie stellen wir das an, wenn wir jetzt den kleinen Absatz und
+			den ganz grossen Absatz in roter Schrift darstellen wollen?
+		</p>
+		<p>
+			Klar k&ouml;nnen wir in jeder einzelnen CSS-Regel entsprechende CSS-Stile angeben,
+			aber angenommen wir m&uuml;ssten das f&uuml;r 20 weitere Elemente - das w&auml;re ziemlich
+			m&uuml;hselig...
+		</p>
+		<p>
+			Abhilfe daf&uuml;r schaffen Klassen:
+		</p>
+		<textarea>
+<style>
+	#klein	{font-size:10px;}
+	#mittel	{font-size:14px;}
+	#riesig	{font-size:26px;}
+	.rot	{color:red;}
+</style>
+<p id="klein" class="rot">
+	Kleiner Absatz
+</p>
+<p id="mittel">
+	Gr&ouml;sserer Absatz
+</p>
+<p id="riesig" class="rot">
+	Riesen Absatz
+</p> 
+		</textarea>
+		<p>
+			Praktischerweise k&ouml;nnen Klassen mehrfach angegeben werden und sogar mehrfach auf
+			einem Element!
+		</p>
+		<textarea>
+<style>
+	p		{font-size:14px;}
+	.rot	{color: red;}
+	.klein	{font-size:10px;}
+</style>
+<p class="klein">
+	Kleiner Absatz
+</p>
+<p class="klein rot">
+	Kleiner roter Absatz
+</p>
+<p class="rot">
+	Roter Absatz
+</p>
+		</textarea>
+		<h3>
+			Zusammenfassung
+		</h3>
+		<p>
+			Es gibt also drei unterschiedliche Wege, wie ich CSS-Stile an meine
+			HTML-Elemente binde:
+		</p>
+		<ul>
+			<li>
+				Wir k&ouml;nnen ein Tag direkt ansprechen:<br/>
+				p {color:red; font-size:10px;}
+			</li>
+			<li>
+				Oder ihnen einen Namen (ID) geben:<br/>
+				#jenny {color:pink; height:165px;}
+			</li>
+			<li>
+				Oder viele Elemente mit einer Klasse ausr&uuml;sten:</br>
+				.rot-mit-rahmen {background-color:red; border:solid 1px black;}
+			</li>
+		</ul>
+		<p>Nochmal im &uuml;berblick:</p>
+		<p>
+			<table>
+				<tr>
+					<th>Kennzeichner</th>
+					<th>Bedeutung</th>
+				</tr>
+				<tr>
+					<td>Keiner</td>
+					<td>Tag</td>
+				</tr>
+				<tr>
+					<td>. (Punkt)</td>
+					<td>Klasse</td>
+				</tr>
+				<tr>
+					<td>#</td>
+					<td>ID (Name)</td>
+				</tr>
+			</table>
+		</p>
 		<h3>Was bedeutet Layout?</h3>
 		<h3>Wichtige CSS Stile</h3>
 		<h3>Projektarbeit: Homepage aufpeppen</h3>
 		<h2>Layout mit CSS</h2>
 		<h3>Box Modell</h3>
 		<h3>Bereiche erstellen (Div)</h3>
-		<h3>Unterscheidung von Elementen</h3>
 		<h3>float</h3>
 	</div>
 	</body>
